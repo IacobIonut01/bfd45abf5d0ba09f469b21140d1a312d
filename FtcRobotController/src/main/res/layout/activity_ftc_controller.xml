@@ -32,207 +32,172 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              xmlns:style="http://schemas.android.com/apk/res-auto"
-              tools:context="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
-              android:focusable="true"
-              android:id="@+id/entire_screen"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:style="http://schemas.android.com/apk/res-auto"
+    tools:context="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
+    android:focusable="true"
+    android:id="@+id/entire_screen"
+    android:orientation="vertical">
 
   <!-- black bar on top -->
   <RelativeLayout
       android:id="@+id/top_bar"
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="80dp"
+      android:background="@color/background_black">
 
     <ImageView
         android:id="@+id/robotIcon"
+        android:src="@drawable/icon_robotcontroller"
         android:layout_width="wrap_content"
-        android:layout_height="86dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_height="fill_parent"
         android:adjustViewBounds="true"
-        android:src="@drawable/ic_robo" />
+        android:layout_margin="1dp"/>
 
     <TextView
         android:id="@+id/textDeviceName"
+        android:layout_toEndOf="@id/robotIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/google_sans"
-        android:padding="2dp"
+        android:textColor="?attr/textWhite"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/light_teal" />
+        android:padding="8dp"
+        android:textStyle="bold"/>
 
     <ImageButton
         android:id="@+id/menu_buttons"
+        android:scaleType="fitXY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/robotIcon"
-        android:layout_alignBottom="@+id/robotIcon"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="12dp"
-        android:adjustViewBounds="true"
+        android:src="@drawable/icon_menu"
         android:background="@android:color/transparent"
-        android:padding="6dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_menu" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/robotIcon"
+        android:padding="15dp"
+        android:adjustViewBounds="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="2dp"
-        android:fontFamily="@font/google_sans_bold"
-        android:text="Echo Pulse Bot"
-        android:textColor="@color/bright_teal"
-        android:textSize="16sp" />
+        android:layout_margin="10dp"/>
 
   </RelativeLayout>
   <!-- end of black bar -->
 
-  <LinearLayout
+  <include layout="@layout/header"
+      android:id="@+id/included_header"/>
+
+  <RelativeLayout
+      android:id="@+id/RelativeLayout"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginStart="12dp"
-      android:layout_marginTop="6dp"
-      android:layout_marginEnd="12dp"
-      android:layout_marginBottom="6dp"
-      android:orientation="vertical">
+      android:keepScreenOn="true"
+      android:paddingBottom="@dimen/activity_vertical_margin"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_vertical_margin" >
 
-    <include
-        android:id="@+id/included_header"
-        layout="@layout/header"
+    <TextView
+        android:id="@+id/textNetworkConnectionStatus"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="" />
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayout"
+    <TextView
+        android:id="@+id/textRobotStatus"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:keepScreenOn="true"
-        android:padding="5dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textNetworkConnectionStatus"
+        android:visibility="invisible"
+        android:text="" />
 
-      <TextView
-          android:id="@+id/textNetworkConnectionStatus"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:fontFamily="@font/google_sans"
-          android:text=""
-          android:visibility="invisible" />
+    <TextView
+        android:id="@+id/textOpMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textRobotStatus"
+        android:visibility="invisible"
+        android:text="" />
 
-      <TextView
-          android:id="@+id/textRobotStatus"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/textNetworkConnectionStatus"
-          android:fontFamily="@font/google_sans"
-          android:text=""
-          android:visibility="invisible" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textOpMode"
+        android:layout_above="@+id/textGamepad1">
 
-      <TextView
-          android:id="@+id/textOpMode"
+      <LinearLayout
+          android:id="@+id/monitorContainer"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/textRobotStatus"
-          android:fontFamily="@font/google_sans"
-          android:text=""
-          android:visibility="invisible" />
-
-      <FrameLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_above="@+id/textGamepad1"
-          android:layout_below="@+id/textOpMode">
+          android:layout_height="match_parent"
+          android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/monitorContainer"
+            android:id="@+id/cameraMonitorViewId"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            />
+        <FrameLayout
+            android:id="@+id/tfodMonitorViewId"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
 
-          <LinearLayout
-              android:id="@+id/cameraMonitorViewId"
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:orientation="vertical"
-              android:visibility="gone" />
+      </LinearLayout>
 
-          <FrameLayout
-              android:id="@+id/tfodMonitorViewId"
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:visibility="gone" />
-
-        </LinearLayout>
-
-        <!-- When visible, the error message will overlay and thus partially
+      <!-- When visible, the error message will overlay and thus partially
            obscure part of the camera monitor. We make this trade off so as to
            allow for a bigger camera monitor view in the common case when the
            error is not in fact present
         -->
-        <TextView
-            android:id="@+id/textErrorMessage"
-            style="@style/FtcTextViewStyleBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/google_sans"
-            android:text=""
-            android:textColor="?attr/textMediumDark"
-            android:visibility="invisible" />
-
-      </FrameLayout>
-
-      <TextView
-          android:id="@+id/textGamepad1"
+      <TextView style="@style/FtcTextViewStyleBold"
+          android:id="@+id/textErrorMessage"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_above="@+id/textGamepad2"
-          android:fontFamily="@font/google_sans"
           android:text=""
-          android:visibility="invisible" />
+          android:visibility="invisible"
+          android:textColor="?attr/textMediumDark" />
 
-      <TextView
-          android:id="@+id/textGamepad2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:fontFamily="@font/google_sans"
-          android:text=""
-          android:visibility="invisible" />
+    </FrameLayout>
 
-      <!-- invisible except when programming mode is activated from the DS -->
-      <TextView
-          android:id="@+id/textRemoteProgrammingMode"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="?attr/backgroundLight"
-          android:fontFamily="@font/google_sans"
-          android:gravity="center"
-          android:text=""
-          android:textColor="?attr/textWhite"
-          android:textSize="40sp"
-          android:textStyle="bold"
-          android:visibility="invisible" />
+    <TextView
+        android:id="@+id/textGamepad1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textGamepad2"
+        android:visibility="invisible"
+        android:text="" />
 
-    </RelativeLayout>
-  </LinearLayout>
+    <TextView
+        android:id="@+id/textGamepad2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"
+        android:text="" />
+
+    <!-- invisible except when programming mode is activated from the DS -->
+    <TextView
+        android:id="@+id/textRemoteProgrammingMode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundLight"
+        android:gravity="center"
+        android:textColor="?attr/textWhite"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:text="" />
+
+  </RelativeLayout>
 
   <WebView
-    android:id="@+id/webViewBlocksRuntime"
-    android:layout_width="1dp"
-    android:layout_height="1dp" />
+      android:id="@+id/webViewBlocksRuntime"
+      android:layout_width="1dp"
+      android:layout_height="1dp" />
 
 </LinearLayout>

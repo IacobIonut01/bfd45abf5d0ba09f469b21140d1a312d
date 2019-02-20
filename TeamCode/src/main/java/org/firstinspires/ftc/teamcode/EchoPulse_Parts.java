@@ -2,8 +2,12 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxI2cColorRangeSensor;
+import com.qualcomm.hardware.motors.TetrixMotor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 class EchoPulse_Parts {
 
@@ -33,11 +37,20 @@ class EchoPulse_Parts {
         return hardwareMap.dcMotor.get("MotorCarlig");
     }
 
-    LynxI2cColorRangeSensor getColorSensor() {
-        return hardwareMap.get(LynxI2cColorRangeSensor.class, "cls");
-    }
 
     BNO055IMU getGyro() {
         return hardwareMap.get(BNO055IMU.class, "imu");
     }
+
+    WebcamName getWebcam() {
+        return hardwareMap.get(WebcamName.class, "Webcam 1");
+    }
+
+    DcMotor getDcBaza() {
+        return hardwareMap.dcMotor.get("bazaDC");
+    }
+
+    DcMotor getDcExtindere() { return hardwareMap.dcMotor.get("extindereDC"); }
+
+    Servo getRotatieCuva() { return hardwareMap.servo.get("rotatieCuva"); }
 }
